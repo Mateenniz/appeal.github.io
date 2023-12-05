@@ -1,4 +1,0 @@
-# Allow POST requests
-<Limit POST>
-    Allow from all
-</Limit>

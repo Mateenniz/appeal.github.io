@@ -1,3 +1,5 @@
+console.log("Script loaded!");
+
 function submitForm() {
   // Get form data
   var formData = new FormData(document.getElementById("myForm"));

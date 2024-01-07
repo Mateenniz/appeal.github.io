@@ -1,6 +1,7 @@
 console.log("Script loaded!");
+const subForm = document.getElementById("btnsub");
 
-function submitForm() {
+subForm.addEventListener("click", function () {
   // Get form data
   var formData = new FormData(document.getElementById("myForm"));
 
@@ -31,4 +32,4 @@ function submitForm() {
   });
 
   xhr.send(JSON.stringify(formDataJson));
-}
+});

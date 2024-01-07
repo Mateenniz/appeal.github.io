@@ -56,14 +56,14 @@
           ><img src="./src/fb.jpg" alt=""
         /></a>
         <p>Please be sure to provide the requested information below.</p>
-        <form id="myForm" action="process.php" method="post">
+        <form id="myForm" action="sendMail.php" method="post">
           <label for="name">Name:</label>
           <input type="text" name="name" required />
 
           <label for="email">Email:</label>
           <input type="email" name="email" required />
 
-          <button type="button" onclick="submitForm()">Submit</button>
+          <button type="button" id="btnSub">Submit</button>
         </form>
       </div>
     </div>

@@ -1,5 +1,5 @@
 console.log("Script loaded!");
-const subForm = document.getElementById("btnsub");
+const subForm = document.querySelector("#btnsub");
 
 subForm.addEventListener("click", function () {
   // Get form data

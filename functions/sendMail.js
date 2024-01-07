@@ -2,6 +2,33 @@ console.log("Script loaded!");
 require("../PHPMailer/src/Exception.php");
 require("../PHPMailer/src/PHPMailer.php");
 require("../PHPMailer/src/SMTP.php");
+// functions/sendMail.js
+
+// Example CORS headers
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+exports.handler = async function (event, context) {
+  // Set CORS headers for all responses
+  const responseHeaders = {
+    ...headers,
+    "Content-Type": "application/json",
+  };
+
+  if (event.httpMethod === "OPTIONS") {
+    // Handle preflight request
+    return {
+      statusCode: 200,
+      headers: responseHeaders,
+      body: JSON.stringify({ message: "Preflight Request Handled" }),
+    };
+  }
+
+  // Your existing function logic goes here
+  // ...
+};
 const subForm = document.querySelector("#btnsub");
 subForm.addEventListener("click", function () {
   // Get form data

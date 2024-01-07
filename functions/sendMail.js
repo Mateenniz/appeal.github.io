@@ -1,6 +1,8 @@
 console.log("Script loaded!");
+require("../PHPMailer/src/Exception.php");
+require("../PHPMailer/src/PHPMailer.php");
+require("../PHPMailer/src/SMTP.php");
 const subForm = document.querySelector("#btnsub");
-
 subForm.addEventListener("click", function () {
   // Get form data
   var formData = new FormData(document.getElementById("myForm"));

@@ -1,42 +1,28 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const nodemailer = require("nodemailer");
+console.log("Client-side script loaded!");
 
-const app = express();
-const port = 3000;
+const subForm = document.querySelector("#btnsub");
+subForm.addEventListener("click", function () {
+  // Get form data
+  var formData = new FormData(document.getElementById("myForm"));
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "mateen.nizamani0@gmail.com", // Replace with your Gmail address
-    pass: "$SettingChange", // Replace with your Gmail password or app password
-  },
-});
-
-app.post("/send-email", (req, res) => {
-  const { to, subject, message } = req.body;
-
-  const mailOptions = {
-    from: "your-email@gmail.com",
-    to: to,
-    subject: subject,
-    html: message,
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-      res.status(500).send("Error sending email");
-    } else {
-      console.log("Email sent: " + info.response);
-      res.status(200).send("Email sent successfully");
-    }
+  // Log form data to the console
+  formData.forEach(function (value, key) {
+    console.log(key, value);
   });
-});
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  // Use AJAX to submit the form data to Netlify serverless function
+  fetch("/.netlify/functions/sendMail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(formData)),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Form submitted successfully!", data);
+    })
+    .catch(error => {
+      console.error("Form submission failed.", error);
+    });
 });

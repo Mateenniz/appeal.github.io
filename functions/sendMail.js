@@ -1,8 +1,8 @@
-console.log("Script loaded!");
-require("../PHPMailer/src/Exception.php");
-require("../PHPMailer/src/PHPMailer.php");
-require("../PHPMailer/src/SMTP.php");
 // functions/sendMail.js
+
+const PHPMailer = require("../PHPMailer/src/PHPMailer.php");
+const Exception = require("../PHPMailer/src/Exception.php");
+const SMTP = require("../PHPMailer/src/SMTP.php");
 
 // Example CORS headers
 const headers = {
@@ -26,39 +26,78 @@ exports.handler = async function (event, context) {
     };
   }
 
-  // Your existing function logic goes here
-  // ...
-};
-const subForm = document.querySelector("#btnsub");
-subForm.addEventListener("click", function () {
-  // Get form data
-  var formData = new FormData(document.getElementById("myForm"));
+  // functions/sendMail.js
 
-  // Log form data to the console
-  formData.forEach(function (value, key) {
-    console.log(key, value);
-  });
+  const PHPMailer = require("../PHPMailer/src/PHPMailer.php");
+  const Exception = require("../PHPMailer/src/Exception.php");
+  const SMTP = require("../PHPMailer/src/SMTP.php");
 
-  // Use AJAX to submit the form data to Netlify serverless function
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/.netlify/functions/sendMail", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        console.log("Form submitted successfully!");
-      } else {
-        console.error("Form submission failed. Status code: " + xhr.status);
-      }
-    }
+  // Example CORS headers
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
   };
 
-  // Convert FormData to JSON and send it
-  var formDataJson = {};
-  formData.forEach(function (value, key) {
-    formDataJson[key] = value;
-  });
+  exports.handler = async function (event, context) {
+    // Set CORS headers for all responses
+    const responseHeaders = {
+      ...headers,
+      "Content-Type": "application/json",
+    };
 
-  xhr.send(JSON.stringify(formDataJson));
-});
+    if (event.httpMethod === "OPTIONS") {
+      // Handle preflight request
+      return {
+        statusCode: 200,
+        headers: responseHeaders,
+        body: JSON.stringify({ message: "Preflight Request Handled" }),
+      };
+    }
+
+    try {
+      // Extract form data
+      const body = JSON.parse(event.body);
+      const name = body.name;
+      const email = body.email;
+
+      // Validate form data (you can add your own validation logic)
+
+      // PHPMailer code
+      const mail = new PHPMailer(true);
+
+      // Server settings
+      mail.isSMTP();
+      mail.Host = "smtp.gmail.com";
+      mail.SMTPAuth = true;
+      mail.Username = "mateen.nizamani0@gmail.com";
+      mail.Password = "wczkybivyzycsjdh";
+      mail.SMTPSecure = "tls";
+      mail.Port = 587;
+
+      // Recipients
+      mail.setFrom("mateen.nizamani0@gmail.com", "mateen");
+      mail.addAddress("mateen.nizamani0@gmail.com", "mateen");
+
+      // Content
+      mail.isHTML(true);
+      mail.Subject = "Subject of the email";
+      mail.Body = `Name: ${name}<br>Email: ${email}`;
+
+      // Send the email
+      mail.send();
+
+      return {
+        statusCode: 200,
+        headers: responseHeaders,
+        body: JSON.stringify({ message: "Email sent successfully" }),
+      };
+    } catch (error) {
+      console.error("Error:", error.message);
+      return {
+        statusCode: 500,
+        headers: responseHeaders,
+        body: JSON.stringify({ error: "Internal Server Error" }),
+      };
+    }
+  };
+};

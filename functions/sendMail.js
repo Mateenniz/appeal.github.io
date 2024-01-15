@@ -1,14 +1,14 @@
-// functions/sendMail.js
+// // functions/sendMail.js
 
-const PHPMailer = require("../PHPMailer/src/PHPMailer.php");
-const Exception = require("../PHPMailer/src/Exception.php");
-const SMTP = require("../PHPMailer/src/SMTP.php");
+// const PHPMailer = require("../PHPMailer/src/PHPMailer.php");
+// const Exception = require("../PHPMailer/src/Exception.php");
+// const SMTP = require("../PHPMailer/src/SMTP.php");
 
-// Example CORS headers
-const headers = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "Content-Type",
-};
+// // Example CORS headers
+// const headers = {
+//   "Access-Control-Allow-Origin": "*",
+//   "Access-Control-Allow-Headers": "Content-Type",
+// };
 
 exports.handler = async function (event, context) {
   // Set CORS headers for all responses

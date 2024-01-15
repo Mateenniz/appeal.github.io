@@ -5,26 +5,26 @@
 // const SMTP = require("../PHPMailer/src/SMTP.php");
 
 // // Example CORS headers
-// const headers = {
-//   "Access-Control-Allow-Origin": "*",
-//   "Access-Control-Allow-Headers": "Content-Type",
-// };
+// // const headers = {
+// //   "Access-Control-Allow-Origin": "*",
+// //   "Access-Control-Allow-Headers": "Content-Type",
+// // };
 
-exports.handler = async function (event, context) {
-  // Set CORS headers for all responses
-  const responseHeaders = {
-    ...headers,
-    "Content-Type": "application/json",
-  };
+// exports.handler = async function (event, context) {
+//   // Set CORS headers for all responses
+//   const responseHeaders = {
+//     ...headers,
+//     "Content-Type": "application/json",
+//   };
 
-  if (event.httpMethod === "OPTIONS") {
-    // Handle preflight request
-    return {
-      statusCode: 200,
-      headers: responseHeaders,
-      body: JSON.stringify({ message: "Preflight Request Handled" }),
-    };
-  }
+//   if (event.httpMethod === "OPTIONS") {
+//     // Handle preflight request
+//     return {
+//       statusCode: 200,
+//       headers: responseHeaders,
+//       body: JSON.stringify({ message: "Preflight Request Handled" }),
+//     };
+//   }
 
   // functions/sendMail.js
 

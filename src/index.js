@@ -11,7 +11,7 @@ subForm.addEventListener("click", function () {
   });
 
   // Use AJAX to submit the form data to Netlify serverless function
-  fetch("/.netlify/functions/sendMail", {
+  fetch("/functions/sendMail", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -28,9 +28,9 @@
 
 // functions/sendMail.js
 
-const PHPMailer = require("../PHPMailer/src/PHPMailer.php");
-const Exception = require("../PHPMailer/src/Exception.php");
-const SMTP = require("../PHPMailer/src/SMTP.php");
+const PHPMailer = import("../PHPMailer/src/PHPMailer.php");
+const Exception = import("../PHPMailer/src/Exception.php");
+const SMTP = import("../PHPMailer/src/SMTP.php");
 
 // Example CORS headers
 const headers = {

